@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>עובד לי — העבודה שלך. העובד שלך.</title>
+<style>
+:root{--navy:#102a68;--green:#18a63a;--light:#f4f8ff;--text:#15213b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Hebrew",sans-serif;color:var(--text);background:#fff}
+header{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;border-bottom:1px solid #e8edf5;background:#fff;position:sticky;top:0;z-index:5}
+.logo{font-size:32px;font-weight:900;color:var(--navy)}.logo span{color:var(--green)}
+nav{display:flex;gap:28px;font-weight:700}nav a{color:var(--text);text-decoration:none}
+.actions{display:flex;gap:10px}.btn{border:0;border-radius:12px;padding:13px 22px;font-size:16px;font-weight:800;cursor:pointer}
+.primary{background:var(--navy);color:white}.green{background:var(--green);color:white}.outline{background:white;color:var(--navy);border:1px solid #b9c8e5}
+.hero{background:linear-gradient(135deg,#edf5ff,#fff);padding:70px 6% 85px;text-align:center}
+.badge{display:inline-block;background:#e6f7ea;color:#168732;border-radius:30px;padding:8px 15px;font-weight:800}
+h1{font-size:clamp(38px,6vw,72px);margin:18px 0 12px;color:var(--navy)}h1 span{color:var(--green)}
+.subtitle{font-size:22px;max-width:720px;margin:0 auto 30px;line-height:1.6}
+.hero-buttons{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
+.search{max-width:1050px;margin:-38px auto 50px;background:#fff;border-radius:22px;box-shadow:0 12px 40px #102a6818;padding:18px;display:grid;grid-template-columns:1.4fr 1fr 1fr auto;gap:12px;position:relative}
+.field{border:1px solid #dce4f1;border-radius:13px;padding:15px;background:#fff;text-align:right}.field small{display:block;color:#6d7890;margin-bottom:5px}.field input,.field select{width:100%;border:0;outline:0;font-size:16px;background:white}
+section{padding:30px 6% 70px}.title{text-align:center;font-size:36px;color:var(--navy);margin:10px 0 35px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:25px;max-width:1100px;margin:auto}.card{border-radius:24px;padding:35px;background:#f7fbf8;border:1px solid #dff0e2}.card.blue{background:#f4f8ff;border-color:#dce8ff}.icon{font-size:42px}.card h3{font-size:28px;margin:12px 0}.card p{font-size:18px;line-height:1.6;color:#59657c}
+.jobs{max-width:1050px;margin:auto;display:grid;gap:15px}.job{border:1px solid #e1e7f0;border-radius:18px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:20px}.job h3{margin:0 0 8px}.meta{color:#68748a;line-height:1.8}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;max-width:1050px;margin:20px auto 0}.stat{background:#fff;border:1px solid #e4e9f2;border-radius:18px;padding:25px;text-align:center}.stat b{display:block;font-size:30px;color:var(--navy)}
+footer{background:#0d2254;color:white;padding:35px 6%;text-align:center}
+@media(max-width:800px){nav{display:none}.search{grid-template-columns:1fr;margin:20px 5% 35px}.cards,.stats{grid-template-columns:1fr}.job{flex-direction:column;align-items:stretch}.hero{padding-top:50px}.actions .outline{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">עובד <span>לי</span></div>
+  <nav><a href="#home">דף הבית</a><a href="#jobs">משרות</a><a href="#employers">מעסיקים</a><a href="#about">איך זה עובד?</a></nav>
+  <div class="actions"><button class="btn outline" onclick="alert('מסך הרשמה יתווסף בגרסה הבאה')">הרשמה</button><button class="btn primary" onclick="alert('מסך התחברות יתווסף בגרסה הבאה')">התחברות</button></div>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="badge">הדרך הפשוטה למצוא את החיבור הנכון</div>
+  <h1>העבודה שלך. <span>העובד שלך.</span></h1>
+  <p class="subtitle">עובד לי מחבר בין אנשים שמחפשים עבודה לבין עסקים שמחפשים עובדים — במהירות ובפשטות.</p>
+  <div class="hero-buttons">
+    <button class="btn primary" onclick="document.getElementById('jobs').scrollIntoView({behavior:'smooth'})">👤 אני מחפש עבודה</button>
+    <button class="btn green" onclick="document.getElementById('employers').scrollIntoView({behavior:'smooth'})">🏢 אני מחפש עובדים</button>
+  </div>
+</section>
+
+<div class="search">
+  <div class="field"><small>מה אתה מחפש?</small><input id="q" placeholder="מקצוע / תפקיד"></div>
+  <div class="field"><small>אזור</small><select id="area"><option>כל האזורים</option><option>ירושלים</option><option>מרכז</option><option>צפון</option><option>דרום</option></select></div>
+  <div class="field"><small>סוג משרה</small><select id="type"><option>הכול</option><option>משרה מלאה</option><option>משרה חלקית</option></select></div>
+  <button class="btn primary" onclick="filterJobs()">🔎 חיפוש</button>
+</div>
+
+<section id="employers">
+  <div class="cards">
+    <div class="card blue"><div class="icon">👤</div><h3>מחפש עבודה?</h3><p>צור פרופיל, הוסף ניסיון וזמינות וקבל משרות שמתאימות לך.</p><button class="btn primary" onclick="alert('נפתח תהליך יצירת פרופיל')">יצירת פרופיל</button></div>
+    <div class="card"><div class="icon">🏢</div><h3>מחפש עובדים?</h3><p>פרסם משרה וקבל מועמדים מתאימים במקום אחד.</p><button class="btn green" onclick="alert('נפתח תהליך פרסום משרה')">פרסום משרה</button></div>
+  </div>
+</section>
+
+<section id="jobs">
+  <h2 class="title">משרות לדוגמה</h2>
+  <div class="jobs" id="jobList">
+    <article class="job" data-search="מחסנאי ירושלים מלאה"><div><h3>מחסנאי/ת</h3><div class="meta">📍 ירושלים · 💰 40–50 ₪ לשעה · 🕐 משרה מלאה</div></div><button class="btn primary" onclick="alert('הגשת מועמדות — במסך הבא')">פרטים ומועמדות</button></article>
+    <article class="job" data-search="נהג ירושלים מלאה"><div><h3>נהג/ת חלוקה</h3><div class="meta">📍 ירושלים · 💰 שכר לפי ניסיון · 🕐 משרה מלאה</div></div><button class="btn primary" onclick="alert('הגשת מועמדות — במסך הבא')">פרטים ומועמדות</button></article>
+    <article class="job" data-search="שירות לקוחות מרכז חלקית"><div><h3>נציג/ת שירות לקוחות</h3><div class="meta">📍 מרכז · 💰 38–45 ₪ לשעה · 🕐 משרה חלקית</div></div><button class="btn primary" onclick="alert('הגשת מועמדות — במסך הבא')">פרטים ומועמדות</button></article>
+  </div>
+</section>
+
+<section id="about">
+<h2 class="title">עובד לי במספרים</h2>
+<div class="stats"><div class="stat"><b>35,842</b>מחפשי עבודה</div><div class="stat"><b>8,974</b>עסקים</div><div class="stat"><b>8,000+</b>משרות</div><div class="stat"><b>98%</b>שביעות רצון</div></div>
+</section>
+</main>
+<footer>© 2026 עובד לי · העבודה שלך. העובד שלך.</footer>
+<script>
+function filterJobs(){
+ const q=document.getElementById('q').value.trim().toLowerCase();
+ const area=document.getElementById('area').value;
+ const type=document.getElementById('type').value;
+ document.querySelectorAll('.job').forEach(j=>{
+   const s=j.dataset.search;
+   const okQ=!q||s.includes(q), okA=area==='כל האזורים'||s.includes(area), okT=type==='הכול'||s.includes(type.includes('חלקית')?'חלקית':'מלאה');
+   j.style.display=(okQ&&okA&&okT)?'flex':'none';
+ });
+ document.getElementById('jobs').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
